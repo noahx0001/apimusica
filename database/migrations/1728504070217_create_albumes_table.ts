@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.integer('artista_id').unsigned().references('id').inTable('artistas').onDelete('CASCADE')
       table.timestamp('created_at')
       table.timestamp('updated_at').nullable().defaultTo(null)
+      table.timestamp('deleted_at').nullable().defaultTo(null)
     })
   }
 

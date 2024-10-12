@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('nacionalidad').notNullable()
       table.timestamp('created_at')
       table.timestamp('updated_at').nullable().defaultTo(null)
+      table.timestamp('deleted_at').nullable().defaultTo(null)
     })
   }
 

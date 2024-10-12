@@ -5,9 +5,10 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import Artista from '#models/artista'
 import Comentario from '#models/comentario'
-import { compileFunction } from 'vm'
+import { compose } from '@adonisjs/core/helpers'
+import { SoftDeletes } from 'adonis-lucid-soft-deletes'
 
-export default class Album extends BaseModel {
+export default class Albumes extends compose(BaseModel, SoftDeletes) {
   @column({ isPrimary: true })
   declare id: number
 
@@ -15,13 +16,19 @@ export default class Album extends BaseModel {
   declare nombre: string
 
   @column()
-  declare fecha_lanzamiento: DateTime
+  declare fecha_lanzamiento: Date
+
+  @column()
+  declare artista_id: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @column.dateTime()
+  declare deletedAt: DateTime | null
 
   @hasMany(() => Cancion)
   declare canciones: HasMany<typeof Cancion>

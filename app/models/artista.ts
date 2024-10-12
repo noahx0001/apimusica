@@ -1,11 +1,9 @@
 import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
-import { compose } from '@adonisjs/core/helpers'
-import { SoftDeletes } from 'adonis-lucid-soft-deletes'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
-import Album from '#models/album'
+import Albumes from '#models/albume'
 
-export default class Artista extends compose(BaseModel, SoftDeletes) {
+export default class Artista extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
@@ -24,8 +22,8 @@ export default class Artista extends compose(BaseModel, SoftDeletes) {
   @column.dateTime()
   declare deletedAt: DateTime | null
 
-  @hasMany(() => Album)
-  declare albums: HasMany<typeof Album>
+  @hasMany(() => Albumes)
+  declare albums: HasMany<typeof Albumes>
 
 
 }

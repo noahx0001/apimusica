@@ -8,15 +8,17 @@
 */
 
 import router from '@adonisjs/core/services/router'
-import User from '#models/user'
-import Cancion from '#models/cancion'
-import Playlist from '#models/playlist'
-import Discografia from '#models/discografia'
-import Genero from '#models/genero'
-import Resena from '#models/resena'
-import Comentario from '#models/comentario'
-import Artista from '#models/artista'
+import { ro } from '@faker-js/faker'
 
+const UsersController = () => import('#controllers/users_controller')
+const ArtistasController = () => import('#controllers/artistas_controller')
+const GenerosController = () => import('#controllers/generos_controller')
+const CancionesController = () => import('#controllers/cancions_controller')
+const PlaylistsController = () => import('#controllers/playlists_controller')
+const DiscografiasController = () => import('#controllers/discografias_controller')
+const ResenasController = () => import('#controllers/resenas_controller')
+const ComentariosController = () => import('#controllers/comentarios_controller')
+const AlbumesController = () => import('#controllers/albumes_controller')
 
 router.get('/', async () => {
   return {
@@ -24,6 +26,14 @@ router.get('/', async () => {
   }
 })
 
-router.post('/login', 'users_controller.login')
+router.post('/login', [UsersController, 'login'])
 
+router.resource('/artistas', ArtistasController)
+router.resource('/generos', GenerosController)
+router.resource('/canciones', CancionesController)
+router.resource('/playlists', PlaylistsController)
+router.resource('/discografias', DiscografiasController)
+router.resource('/resenas', ResenasController)
+router.resource('/comentarios', ComentariosController)
+router.resource('/albums', AlbumesController)
 

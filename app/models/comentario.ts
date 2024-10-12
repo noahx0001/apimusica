@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import User from '#models/user'
-import Album from '#models/album'
+import Album from '#models/albume'
 
 export default class Comentario extends BaseModel {
   @column({ isPrimary: true })
