@@ -38,7 +38,7 @@ export default class ResenasController {
         await resena.save()
 
         return response.status(201).json({
-            message: 'resena creada exitosamente',
+            message: 'Resena creada exitosamente',
             resena: resena
         })
     }
@@ -53,7 +53,7 @@ export default class ResenasController {
             })
         }
 
-        const data = request.only(['resena', 'calificacion', 'resena_id', 'user_id', 'cancion_id'])
+        const data = request.only(['resena', 'calificacion', 'user_id', 'cancion_id'])
 
         const payload = await updatePostValidator.validate(data)
 
@@ -89,7 +89,7 @@ export default class ResenasController {
         await resena.save()
 
         return response.status(201).json({
-            message: 'resena actualizado exitosamente',
+            message: 'Reseña actualizada exitosamente',
             resena: resena
         })
 
@@ -104,14 +104,14 @@ export default class ResenasController {
 
         if (!resena) {
             return response.status(404).json({
-                message: 'resena no encontrada'
+                message: 'Reseña no encontrada'
             })
         }
 
         await resena.delete()
 
         response.status(200).json({
-            message: 'resena eliminada exitosamente'
+            message: 'Reseña eliminada exitosamente'
         })
     }
 
@@ -130,7 +130,7 @@ export default class ResenasController {
 
         if (!resena) {
             return response.status(404).json({
-                message: 'Resena no encontrada'
+                message: 'Reseña no encontrada'
             })
         }
 

@@ -1,8 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import Cancion from '#models/cancion'
+import Cancione from '#models/cancion'
 import { createPostValidator, updatePostValidator } from '#validators/cancion'
 import Artista from '#models/artista'
-import cancion from '#models/cancion'
 import Genero from '#models/genero'
 import Albumes from '#models/albume'
 
@@ -36,7 +35,7 @@ export default class CancionsController {
             })
         }
 
-        const cancion = new Cancion()
+        const cancion = new Cancione()
 
         cancion.nombre = payload.nombre
         cancion.duracion = payload.duracion
@@ -66,7 +65,7 @@ export default class CancionsController {
 
         const payload = await updatePostValidator.validate(data)
 
-        const cancion = await Cancion.findBy('id', id)
+        const cancion = await Cancione.findBy('id', id)
 
         if (!cancion) {
             return response.status(404).json({
@@ -107,7 +106,7 @@ export default class CancionsController {
         await cancion.save()
 
         return response.status(201).json({
-            message: 'cancion actualizado exitosamente',
+            message: 'Cancion actualizada exitosamente',
             cancion: cancion
         })
 
@@ -117,7 +116,7 @@ export default class CancionsController {
 
         const id = params.id
 
-        const cancion = await Cancion.findBy('id', id)
+        const cancion = await Cancione.findBy('id', id)
 
         if (!cancion) {
             return response.status(404).json({
@@ -133,7 +132,7 @@ export default class CancionsController {
     }
 
     public async index({ response }: HttpContext) {
-        const cancions = await cancion.all()
+        const cancions = await Cancione.all()
 
         return response.status(200).json({
             cancions: cancions
@@ -143,7 +142,7 @@ export default class CancionsController {
     public async show({ response, params }: HttpContext) {
 
         const id = params.id
-        const cancion = await Cancion.findBy('id', id)
+        const cancion = await Cancione.findBy('id', id)
 
         if (!cancion) {
             return response.status(404).json({

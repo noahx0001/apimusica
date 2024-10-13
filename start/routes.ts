@@ -20,6 +20,7 @@ const DiscografiasController = () => import('#controllers/discografias_controlle
 const ResenasController = () => import('#controllers/resenas_controller')
 const ComentariosController = () => import('#controllers/comentarios_controller')
 const AlbumesController = () => import('#controllers/albumes_controller')
+const PlaylistCancionController = () => import('#controllers/playlists_canciones_controller')
 
 router.get('/', async () => {
   return {
@@ -27,7 +28,7 @@ router.get('/', async () => {
   }
 })
 
-router.post('/login', [UsersController, 'login'])
+router.post('/login', [UsersController, 'login']) // Ruta hecha para probar y obtener token
 
 router.group(() => {
   router.resource('/artistas', ArtistasController) // Ruta hecha para probar
@@ -35,11 +36,17 @@ router.group(() => {
   router.resource('/canciones', CancionesController) // Ruta hecha para probar
   router.resource('/discografias', DiscografiasController) // Ruta hecha para probar
   router.resource('/albums', AlbumesController) // Ruta hecha para probar
-}).use(middleware.auth({ guards: ['api'] }))
+  router.resource('/comentarios', ComentariosController) // Ruta hecha para probar
+  router.resource('/resenas', ResenasController) // Ruta hecha para probar
+  router.resource('/playlistsCanciones', PlaylistCancionController) // Ruta hecha para probar
+  router.resource('/playlists', PlaylistsController) // Ruta hecha para probar
+}).use(middleware.auth({ guards: ['api'] })) // Rutas protegidas con JWT token
 
-router.resource('/playlists', PlaylistsController)
-router.resource('/resenas', ResenasController)
-router.resource('/comentarios', ComentariosController)
+
+
+
+
+
 
 
 
