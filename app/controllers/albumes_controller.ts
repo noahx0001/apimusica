@@ -12,7 +12,7 @@ export default class AlbumesController {
 
         const payload = await createPostValidator.validate(data)
 
-        const artista = await Artista.findOrFail(payload.artista_id)
+        const artista = await Artista.findBy('id', payload.artista_id)
 
         if (!artista) {
             return response.status(404).json({

@@ -11,6 +11,12 @@ export default class Comentario extends BaseModel {
   @column()
   declare comentario: string
 
+  @column()
+  declare user_id: number
+
+  @column()
+  declare album_id: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

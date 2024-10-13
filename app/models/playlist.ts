@@ -15,6 +15,9 @@ export default class Playlist extends BaseModel {
   @column()
   declare descripcion: string
 
+  @column()
+  declare user_id: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

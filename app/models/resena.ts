@@ -17,6 +17,12 @@ export default class Resena extends BaseModel {
   @column()
   declare calificacion: number
 
+  @column()
+  declare user_id: number
+
+  @column()
+  declare cancion_id: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

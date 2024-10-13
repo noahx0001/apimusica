@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import { ro } from '@faker-js/faker'
+import { middleware } from '#start/kernel'
 
 const UsersController = () => import('#controllers/users_controller')
 const ArtistasController = () => import('#controllers/artistas_controller')
@@ -28,12 +29,17 @@ router.get('/', async () => {
 
 router.post('/login', [UsersController, 'login'])
 
-router.resource('/artistas', ArtistasController)
-router.resource('/generos', GenerosController)
-router.resource('/canciones', CancionesController)
+router.group(() => {
+  router.resource('/artistas', ArtistasController) // Ruta hecha para probar
+  router.resource('/generos', GenerosController) // Ruta hecha para probar
+  router.resource('/canciones', CancionesController) // Ruta hecha para probar
+  router.resource('/discografias', DiscografiasController) // Ruta hecha para probar
+  router.resource('/albums', AlbumesController) // Ruta hecha para probar
+}).use(middleware.auth({ guards: ['api'] }))
+
 router.resource('/playlists', PlaylistsController)
-router.resource('/discografias', DiscografiasController)
 router.resource('/resenas', ResenasController)
 router.resource('/comentarios', ComentariosController)
-router.resource('/albums', AlbumesController)
+
+
 
